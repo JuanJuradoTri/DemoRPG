@@ -1,5 +1,9 @@
 #pragma once
-#include "hitpointtypes.h"
+#pragma once
+#include <cstdint>
+
+typedef std::uint16_t hptype;
+
 class hp {
 public:
     // return true if set succesfully
