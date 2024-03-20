@@ -1,32 +1,20 @@
 #include <iostream>
-#include "allclasses.h"
+#include "playercharacter.h"
 
 int main() {
-    Cleric cler1;
-    for (int i = 0; i < 2; i++)
-    {
-        std::cout
-            << "Cleric Level: " << cler1.getLevel() << '\n'
-            << "-MaxHP: " << cler1.getMaxHP() << '\n'
-            << "-Strength: " << cler1.getStrength() << '\n'
-            << "-Intellect: " << cler1.getIntellect() << '\n'
-            << "-EXP: " << cler1.getCurrentEXP() << "/" << cler1.getEXPToNextLevel() << '\n';
-        if (i < 1)
-            cler1.gainEXP(100u);
-    }
+    PlayerCharacter p1(new Cleric());
 
-    std::cout << "------------\n";
-    Rogue rog1;
     for (int i = 0; i < 2; i++)
     {
         std::cout
-            << "Rogue Level: " << rog1.getLevel() << '\n'
-            << "-EXP: " << rog1.getCurrentEXP() << "/" << rog1.getEXPToNextLevel() << '\n'
-            << "-MaxHP: " << rog1.getMaxHP() << '\n'
-            << "-Strength: " << rog1.getStrength() << '\n'
-            << "-Intellect: " << rog1.getIntellect() << '\n';
+            << p1.getClassName()
+            << "-Level: " << p1.getLevel() << '\n'
+            << "-EXP: " << p1.getCurrentEXP() << "/" << p1.getEXPToNextLevel() << '\n'
+            << "-HP: " << p1.getMaxHP() << '/' << p1.getMaxHP() << '\n'
+            << "-Strength: " << p1.getStrength() << '\n'
+            << "-Intellect: " << p1.getIntellect() << '\n';
         if (i < 1)
-            rog1.gainEXP(100u);
+            p1.gainEXP(100u);
     }
     return 0;
 }

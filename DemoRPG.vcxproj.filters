@@ -20,13 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="allclasses.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cleric.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="hp.h">
+    <ClInclude Include="pointwell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="rogue.h">
@@ -41,7 +35,7 @@
     <ClInclude Include="wizard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="levelsystem.h">
+    <ClInclude Include="playercharacter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

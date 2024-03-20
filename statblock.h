@@ -14,12 +14,8 @@ public:
         Strength = s;
         Intellect = i;
     }
-    stattype getStrength() {
-        return Strength;
-    }
-    stattype getIntellect() {
-        return Intellect;
-    }
+    stattype getStrength() { return Strength; }
+    stattype getIntellect() { return Intellect; }
 
 protected:
     void increaseStats(stattype s, stattype i) {
