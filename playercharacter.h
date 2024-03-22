@@ -163,7 +163,4 @@ public:
 	void gainEXP(exptype amt) { pcclass->gainEXP(amt); }
 	void takeDamage(welltype amt) { pcclass->HP->reduceCurrent(amt);}
 	void heal(welltype amt) { pcclass->HP->increaseCurrent(amt); }
-
-
-
 };
