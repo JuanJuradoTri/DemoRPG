@@ -23,16 +23,7 @@
     <ClInclude Include="pointwell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="rogue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="statblock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="warrior.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="wizard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="playercharacter.h">
