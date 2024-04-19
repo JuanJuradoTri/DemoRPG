@@ -2,7 +2,7 @@
 #include "playercharacter.h"
 
 int main() {
-    PlayerCharacter p1(new Rogue());
+    PlayerCharacter p1(new Warrior());
 
     for (int i = 0; i < 2; i++)
     {
@@ -12,7 +12,10 @@ int main() {
             << "-EXP: " << p1.getCurrentEXP() << "/" << p1.getEXPToNextLevel() << '\n'
             << "-HP: " << p1.getCurrentHP() << '/' << p1.getMaxHP() << '\n'
             << "-Strength: " << p1.getStrength() << '\n'
-            << "-Intellect: " << p1.getIntellect() << '\n';
+            << "-Intellect: " << p1.getIntellect() << '\n'
+            << "-Agility: " << p1.getAgility() << '\n'
+            << "-Armor: " << p1.getArmor() << '\n'
+            << "-ElementRes: " << p1.getElementRes() << '\n';
         if (i < 1)
             p1.gainEXP(100u);
     }

@@ -8,12 +8,12 @@
 typedef std::uint64_t exptype;
 typedef std::uint16_t leveltype;
 
-class PlayerCharacterDelegate : public StatBlock{
+class PlayerCharacterDelegate : public StatBlock {
 public:
 
 	static const exptype LEVEL2AT = 100u;
-	
-	PlayerCharacterDelegate() : StatBlock(0u, 0u){
+
+	PlayerCharacterDelegate() : StatBlock(0u, 0u) {
 		CurrentLevel = 1u;
 		CurrentEXP = 0u;
 		EXPToNextLevel = LEVEL2AT;
@@ -22,7 +22,7 @@ public:
 
 	void gainEXP(exptype gained_exp) {
 		CurrentEXP += gained_exp;
-		while(check_if_leveled()){}	
+		while (check_if_leveled()) {}
 	}
 
 	leveltype getLevel() {
@@ -32,7 +32,7 @@ public:
 	exptype	getCurrentEXP() {
 		return CurrentEXP;
 	}
-	
+
 	exptype getEXPToNextLevel() {
 		return EXPToNextLevel;
 	}
@@ -63,84 +63,32 @@ protected:
 #define PCCONSTRUCT : PlayerCharacterDelegate() {\
 HP->setMax(BASEHP);\
 HP->increaseCurrent(BASEHP);\
-increaseStats(BASESTR, BASEINT);\
+increaseStats(BASESTR, BASEINT, BASEAGI);\
 }
 
 #define LEVELUP void LevelUp() override {\
 HP->setMax((welltype)BASEHP / 2.f + HP->getMax());\
 HP->increaseCurrent((welltype)(BASEHP / 2.f));\
-increaseStats((stattype)((BASESTR + 1u) / 2.f), (stattype)((BASEINT + 1u) / 2.f));\
+increaseStats((stattype)((BASESTR + 1u) / 2.f), (stattype)((BASEINT + 1u) / 2.f), (stattype)((BASEAGI + 1u) / 2.f));\
 }
 
-class Cleric : public PlayerCharacterDelegate {
-public:
-
-	static const welltype BASEHP = (welltype)14u;
-	static const stattype BASESTR = (stattype)2u;
-	static const stattype BASEINT = (stattype)3u;
-
-	std::string getClassName() override { return std::string("Cleric"); }
-	Cleric() PCCONSTRUCT
-
-private:
-	LEVELUP
+#define CHARACTERCLASS(classname, basehp, basestr, baseint, baseagi) \
+class classname : public PlayerCharacterDelegate {\
+public:\
+	static const welltype BASEHP = (welltype)basehp;\
+	static const stattype BASESTR = (stattype)basestr;\
+	static const stattype BASEINT = (stattype)baseint;\
+	static const stattype BASEAGI = (stattype)baseagi;\
+	std::string getClassName() override { return std::string(#classname); }\
+	classname() PCCONSTRUCT \
+private:\
+	LEVELUP \
 };
 
-class Rogue : public PlayerCharacterDelegate {
-public:
-
-	static const welltype BASEHP = (welltype)12u;
-	static const stattype BASESTR = (stattype)3u;
-	static const stattype BASEINT = (stattype)2u;
-
-	std::string getClassName() override { return std::string("Rogue"); }
-	Rogue() PCCONSTRUCT
-
-private:
-	LEVELUP
-};
-
-class Warrior: public PlayerCharacterDelegate {
-public:
-
-	static const welltype BASEHP = (welltype)18u;
-	static const stattype BASESTR = (stattype)4u;
-	static const stattype BASEINT = (stattype)1u;
-
-	std::string getClassName() override { return std::string("Warrior"); }
-	Warrior() PCCONSTRUCT
-
-private:
-	LEVELUP
-};
-
-class Wizard : public PlayerCharacterDelegate {
-public:
-
-	static const welltype BASEHP = (welltype)10u;
-	static const stattype BASESTR = (stattype)1u;
-	static const stattype BASEINT = (stattype)4u;
-
-	std::string getClassName() override { return std::string("Wizard"); }
-	Wizard() PCCONSTRUCT
-
-private:
-	LEVELUP
-};
-
-class Berserker : public PlayerCharacterDelegate {
-public:
-
-	static const welltype BASEHP = (welltype)18u;
-	static const stattype BASESTR = (stattype)5u;
-	static const stattype BASEINT = (stattype)1u;
-
-	std::string getClassName() override { return std::string("Berserker"); }
-	Berserker() PCCONSTRUCT
-
-private:
-	LEVELUP
-};
+CHARACTERCLASS(Cleric, 14, 3, 5, 1)
+CHARACTERCLASS(Wizard, 10, 1, 8, 1)
+CHARACTERCLASS(Warrior, 18, 5, 2, 2)
+CHARACTERCLASS(Rogue, 12, 3, 3, 5)
 
 class PlayerCharacter {
 private:
@@ -159,11 +107,11 @@ public:
 	welltype getMaxHP() { return pcclass->HP->getMax(); }
 	stattype getStrength() { return pcclass->getStrength(); }
 	stattype getIntellect() { return pcclass->getIntellect(); }
+	stattype getAgility() { return pcclass->getAgility(); }
+	stattype getArmor() { return pcclass->getArmor(); }
+	stattype getElementRes() { return pcclass->getElementRes(); }
 
 	void gainEXP(exptype amt) { pcclass->gainEXP(amt); }
-	void takeDamage(welltype amt) { pcclass->HP->reduceCurrent(amt);}
+	void takeDamage(welltype amt) { pcclass->HP->reduceCurrent(amt); }
 	void heal(welltype amt) { pcclass->HP->increaseCurrent(amt); }
-
-
-
 };

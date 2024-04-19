@@ -1,0 +1,4 @@
+// Hint files help the Visual Studio IDE interpret Visual C++ identifiers
+// such as names of functions and macros.
+// For more information see https://go.microsoft.com/fwlink/?linkid=865984
+#define CHARACTERCLASS(classname, basehp, basestr, baseint, baseagi) class classname : public PlayerCharacterDelegate {public: static const welltype BASEHP = (welltype)basehp; static const stattype BASESTR = (stattype)basestr; static const stattype BASEINT = (stattype)baseint; static const stattype BASEAGI = (stattype)baseagi; std::string getClassName() override{return std::string(#classname);} classname() PCCONSTRUCTprivate: LEVELUP};
