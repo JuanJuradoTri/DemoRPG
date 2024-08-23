@@ -14,7 +14,7 @@ int main() {
             << "-Strength: " << p1.getStrength() << '\n'
             << "-Intellect: " << p1.getIntellect() << '\n';
         if (i < 1)
-            p1.gainEXP(100u);
+            p1.gainEXP(10u);
     }
     return 0;
 }
